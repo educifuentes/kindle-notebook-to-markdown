@@ -34,5 +34,22 @@ def build_line(tag):
     highlight_text = tag.contents[0]
     return f"{prefix} {highlight_text}\n"
 
-
 get_highlights(title)
+
+# def build_line_with_user_notes(tag):
+      # class_type = tag.get('class')[0]
+#     # loc = ''
+#     note_text = ''
+#     line = ''
+#     if class_type == 'noteHeading':
+#         entry_kind = tag.text.split()[0]
+#         # loc = tag.text.split()[-1] if entry_kind == 'Highlight' else ''
+#         note_text = tag.text if entry_kind == 'Note' else ''
+#         line = f"- {note_text}\n"
+#     elif class_type == 'noteText':
+#         prefix = '##' if tag.name == 'h2' else '-'
+#         highlight = tag.contents[0]
+#         line = f"{prefix} {highlight}\n"
+#     else:
+#         line = ''
+#     return line
