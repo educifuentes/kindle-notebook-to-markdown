@@ -26,14 +26,20 @@ def get_chapters(title):
 def get_highlights(title):
     soup = read_html(title)
 
-    with open(f'./outputs/{title}.md', 'w') as writer:
+    with open(f'./outputs/notes_{title}.md', 'w') as writer:
         for tag in soup.find_all(attrs={"class": CLASSES }):
             writer.write(build_line(tag))
 
 def build_line(tag):
-    prefix = '##' if tag.name == 'h2' else '-'
+    prefix = '  -'
     highlight_text = tag.contents[0]
+
+    if tag.name == 'h2':
+        prefix = '-'
+        highlight_text = highlight_text.replace(".", " -")
+
     return f"{prefix} {highlight_text}\n"
+
 
 for title in TITLES:
     get_highlights(title)
