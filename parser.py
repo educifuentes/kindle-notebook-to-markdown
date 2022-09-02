@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # title = 'Four Thousand Weeks-Notebook'
-title = "test"
+notebooks = ['pragmatic']
+title = notebooks[0]
 CLASSES = ["noteText", "sectionHeading"]
 
 def read_html(title):
