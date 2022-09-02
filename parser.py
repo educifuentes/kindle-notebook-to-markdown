@@ -1,10 +1,10 @@
 from distutils.command.build import build
 import requests
 from bs4 import BeautifulSoup
+import os
 
-# title = 'Four Thousand Weeks-Notebook'
-notebooks = ['pragmatic']
-title = notebooks[0]
+FILES = [i for i in os.listdir('./inputs') if i.endswith('.html')]
+TITLES = map(lambda x: x.replace(".html", ""), FILES)
 CLASSES = ["noteText", "sectionHeading"]
 
 def read_html(title):
@@ -35,7 +35,13 @@ def build_line(tag):
     highlight_text = tag.contents[0]
     return f"{prefix} {highlight_text}\n"
 
-get_highlights(title)
+for title in TITLES:
+    get_highlights(title)
+    print(f"Succesfully exported notebook {title}")
+
+for title in TITLES:
+    get_chapters(title)
+    print(f"Succesfully exported chapter outline for {title}")
 
 # def build_line_with_user_notes(tag):
       # class_type = tag.get('class')[0]
