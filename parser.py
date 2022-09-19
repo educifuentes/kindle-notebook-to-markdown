@@ -4,13 +4,13 @@ from bs4 import BeautifulSoup
 import os
 
 FILES = [i for i in os.listdir('./inputs') if i.endswith('.html')]
-TITLES = map(lambda x: x.replace(".html", ""), FILES)
+TITLES = list(map(lambda x: x.replace(".html", ""), FILES))
 CLASSES = ["noteText", "sectionHeading"]
 
 def read_html(title):
     html_file = f"./inputs/{title}.html"
     with open(html_file) as fp:
-        soup = BeautifulSoup(fp)
+        soup = BeautifulSoup(fp, 'html.parser')
     return soup
 
 def get_chapters(title):
