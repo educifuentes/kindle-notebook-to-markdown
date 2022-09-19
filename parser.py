@@ -40,15 +40,6 @@ def build_line(tag):
 
     return f"{prefix} {highlight_text}\n"
 
-
-for title in TITLES:
-    get_highlights(title)
-    print(f"Succesfully exported notebook {title}")
-
-for title in TITLES:
-    get_chapters(title)
-    print(f"Succesfully exported chapter outline for {title}")
-
 # def build_line_with_user_notes(tag):
       # class_type = tag.get('class')[0]
 #     # loc = ''
@@ -66,3 +57,20 @@ for title in TITLES:
 #     else:
 #         line = ''
 #     return line
+
+def main():
+    print("kindle-to-markdown")
+    print(f"Processing notebooks of {len(TITLES)} notebooks:")
+    print("\n".join(TITLES))
+    print(". . . . . . . . . .", "\n")
+
+    for title in TITLES:
+        get_highlights(title)
+        print(f"📖 Succesfully exported notebook {title}")
+
+    for title in TITLES:
+        get_chapters(title)
+        print(f"🔖 Succesfully exported chapter outline for {title}")
+
+if __name__ == "__main__":
+    main()
